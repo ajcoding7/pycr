@@ -19,7 +19,7 @@ const App = () => {
     <div>
       <h1 className="h1">Play Your Cards Right</h1>
       <DeckOfCards resetCards={reset} onCardClick={handleCardClick} />
-      <div className="blackLine"></div>
+      <div className="line"></div>
       <div className="hiddenCardsContainer">
         <div className="hiddenCardsRow">
           {hiddenCards.map((card, index) => (

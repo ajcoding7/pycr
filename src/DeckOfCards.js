@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './index.css';
 
-const DeckOfCards = ({ onCardClick }) => {
+const DeckOfCards = ({ resetCards, onCardClick }) => {
   const cards = [
     'Ace Spades', '2 Spades', '3 Spades', '4 Spades', '5 Spades', '6 Spades',
     '7 Spades', '8 Spades', '9 Spades', '10 Spades', 'Jack Spades', 'Queen Spades', 'King Spades',
@@ -24,7 +24,8 @@ const DeckOfCards = ({ onCardClick }) => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (!event.target.closest('.cardContainer')) {
+      const resetButton = document.querySelector('.resetButton');
+        if (!event.target.closest('.cardContainer')) {
         setHiddenCards([]);
         setVisibleCards([...cards]);
       }
