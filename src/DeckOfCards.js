@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './index.css';
 
-const DeckOfCards = () => {
+const DeckOfCards = ({ onCardClick }) => {
   const cards = [
     'Ace Spades', '2 Spades', '3 Spades', '4 Spades', '5 Spades', '6 Spades',
     '7 Spades', '8 Spades', '9 Spades', '10 Spades', 'Jack Spades', 'Queen Spades', 'King Spades',
@@ -14,19 +14,19 @@ const DeckOfCards = () => {
   ];
 
   const [hiddenCards, setHiddenCards] = useState([]);
+  const [visibleCards, setVisibleCards] = useState([...cards]);
 
-  const handleButtonClick = (index) => {
-    if (!hiddenCards.includes(index)) {
-      setHiddenCards((prevState) => [...prevState, index]);
-    } else {
-      setHiddenCards((prevState) => prevState.filter((cardIndex) => cardIndex !== index));
-    }
+  const handleCardClick = (card) => {
+    setHiddenCards((prevHiddenCards) => [...prevHiddenCards, card]);
+    setVisibleCards((prevVisibleCards) => prevVisibleCards.filter((visibleCard) => visibleCard !== card));
+    onCardClick(card);
   };
-  
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (!event.target.closest('.cardContainer')) {
         setHiddenCards([]);
+        setVisibleCards([...cards]);
       }
     };
 
@@ -35,65 +35,54 @@ const DeckOfCards = () => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, []);
-
-
+  }, [cards]);
 
   return (
     <div className="cardContainer">
       <div className="cardRow">
-        {cards.slice(0, 13).map((card, index) => (
-          !hiddenCards.includes(index) && (
-            <button
-              key={index}
-              className={`cardButton ${hiddenCards.includes(card) ? 'hidden' : ''}`}
-              onClick={() => handleButtonClick(card)}
-            >
-              {card}
-            </button>
-          )
+        {visibleCards.slice(0, 13).map((card, index) => (
+          <button
+            key={index}
+            className="cardButton"
+            onClick={() => handleCardClick(card)}
+          >
+            {card}
+          </button>
         ))}
       </div>
       <div className="cardRow">
-        {cards.slice(13, 26).map((card, index) => (
-          !hiddenCards.includes(index + 13) && (
-            <button
-              key={index + 13}
-              className={`cardButton ${hiddenCards.includes(card) ? 'hidden' : ''}`}
-              onClick={() => handleButtonClick(card)}
-            >
-              {card}
-            </button>
-          )
+        {visibleCards.slice(13, 26).map((card, index) => (
+          <button
+            key={index + 13}
+            className="cardButton"
+            onClick={() => handleCardClick(card)}
+          >
+            {card}
+          </button>
         ))}
       </div>
       <div className="cardRow">
-        {cards.slice(26, 39).map((card, index) => (
-          !hiddenCards.includes(index + 26) && (
-            <button
-              key={index + 26}
-              className={`cardButton ${hiddenCards.includes(card) ? 'hidden' : ''}`}
-              onClick={() => handleButtonClick(card)}
-            >
-              {card}
-            </button>
-          )
+        {visibleCards.slice(26, 39).map((card, index) => (
+          <button
+            key={index + 26}
+            className="cardButton"
+            onClick={() => handleCardClick(card)}
+          >
+            {card}
+          </button>
         ))}
       </div>
       <div className="cardRow">
-        {cards.slice(39, 52).map((card, index) => (
-          !hiddenCards.includes(index + 39) && (
-            <button
-              key={index + 39}
-              className={`cardButton ${hiddenCards.includes(card) ? 'hidden' : ''}`}
-              onClick={() => handleButtonClick(card)}
-            >
-              {card}
-            </button>
-          )
+        {visibleCards.slice(39, 52).map((card, index) => (
+          <button
+            key={index + 39}
+            className="cardButton"
+            onClick={() => handleCardClick(card)}
+          >
+            {card}
+          </button>
         ))}
       </div>
-      
     </div>
   );
 };
