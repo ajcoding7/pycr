@@ -31,9 +31,7 @@
   .resetButton {
     font-size: 20px;
     height: 200px;
-    width: 150px;
-    margin-left: 1700px;
-    margin-bottom: 100px;
+    width: 150px;    
   
   }
 
@@ -48,7 +46,7 @@
     justify-content: center;
     margin-top: 40px;
     height: 100px;
-    width: 1650px;
+    width: 1000px;
   }
   
 
@@ -65,7 +63,7 @@
   }
 
   .neil{
-    margin-left: 1550px;
+    margin-top: 300px;
     height: 200px;
     width: 300px;
   }
