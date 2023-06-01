@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './index.css';
 
 const DeckOfCards = ({ resetCards, onCardClick }) => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const cards = [
     'Ace Spades', '2 Spades', '3 Spades', '4 Spades', '5 Spades', '6 Spades',
     '7 Spades', '8 Spades', '9 Spades', '10 Spades', 'Jack Spades', 'Queen Spades', 'King Spades',

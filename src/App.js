@@ -2,6 +2,8 @@ import './index.css'
 import React, { useState }from 'react';
 import DeckOfCards from './DeckOfCards';
 
+
+
 const App = () => {
   const [reset, setReset] = useState(false);
   const [hiddenCards, setHiddenCards] = useState([]);
@@ -29,6 +31,7 @@ const App = () => {
           ))}
         </div>
       </div>
+      <img className="neil" src={ require('./images/neil.jpg') } alt="neil" />
       <button className="resetButton" onClick={handleReset}>Reset Deck</button>
     </div>
   );
